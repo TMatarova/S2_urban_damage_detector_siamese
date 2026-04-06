@@ -18,7 +18,7 @@ using pre- and post-conflict Sentinel-2 satellite imagery, trained on
 | `EDA.ipynb` | Exploratory data analysis notebook |
 | `Results_Comparison.py` | Cross-model evaluation and ranking |
 | `FinalBalanced_splits.npz` | Final train/val/test dataset, download from Zenodo |
-| `Model_3_weights.pt` | Pretrained weights, download from Zenodo |
+| `Damage_Detection_Siamese_CNN.pt` | Pretrained weights, download from Zenodo |
 | `outputs/` | Metrics, confusion matrices, and predictions for all models |
 
 ---
