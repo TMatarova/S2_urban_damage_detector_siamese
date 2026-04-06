@@ -1,4 +1,4 @@
-# Siamese CNN for Building Damage Detection — ICCS 2026
+# Siamese CNN for Building Damage Detection
 
 A Siamese Convolutional Neural Network for binary building damage detection
 using pre- and post-conflict Sentinel-2 satellite imagery, trained on
