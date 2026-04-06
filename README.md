@@ -1,9 +1,10 @@
-# S2_urban_damage_detector_siamese
-# Siamese CNN for Building Damage Detection - ICCS 2026
+# Siamese CNN for Building Damage Detection
 
 A Siamese Convolutional Neural Network for binary building damage detection
 using pre- and post-conflict Sentinel-2 satellite imagery, trained on
 22 conflict-affected Ukrainian regions.
+
+**Dataset and pretrained weights:** https://zenodo.org/records/19441105
 
 ---
 
@@ -11,13 +12,13 @@ using pre- and post-conflict Sentinel-2 satellite imagery, trained on
 
 | File / Folder | Description |
 |---|---|
-| `Model_3 (final model).py` | Final model : ResNet-101 backbone (recommended) |
-| `Model_0.py` - `Model_7.py` | All 8 model variants |
+| `Model_3 (final model).py` | Final model (ResNet-101 backbone, recommended) |
+| `Model_0.py` – `Model_7.py` | All 8 model variants |
 | `Prepocessing_patches.py` | Patch extraction from Sentinel-2 GeoTIFFs |
 | `EDA.ipynb` | Exploratory data analysis notebook |
 | `Results_Comparison.py` | Cross-model evaluation and ranking |
-| `FinalBalanced_splits.npz` | Final train/val/test dataset (ready to use) |
-| `Model_3_weights.pt` | Pretrained weights for the final model |
+| `FinalBalanced_splits.npz` | Final train/val/test dataset, download from Zenodo |
+| `Model_3_weights.pt` | Pretrained weights, download from Zenodo |
 | `outputs/` | Metrics, confusion matrices, and predictions for all models |
 
 ---
@@ -64,7 +65,7 @@ pip install torch torchvision numpy scikit-learn matplotlib rasterio pandas gdal
 
 | Spec | Detail |
 |---|---|
-| **GPU** | Not required : CPU is sufficient |
+| **GPU** | Not required, CPU is sufficient |
 | **RAM** | 8 GB+ |
 | **Storage** | ~500 MB for model weights and patches |
 | **OS** | Windows 10/11 or Linux |
@@ -73,7 +74,7 @@ pip install torch torchvision numpy scikit-learn matplotlib rasterio pandas gdal
 
 ## Training Options
 
-### Option 1 : Use the preprocessed dataset (recommended)
+### Option 1: Use the preprocessed dataset (recommended)
 
 The `FinalBalanced_splits.npz` file contains the ready-to-use train/val/test
 splits. Simply run:
@@ -82,7 +83,7 @@ splits. Simply run:
 python "Model_3 (final model).py"
 ```
 
-### Option 2 : Train on your own dataset
+### Option 2: Train on your own dataset
 
 1. Download pre- and post-event **Sentinel-2 Level-2A** imagery (bands B02,
    B03, B04, B08) from the Copernicus Browser:
@@ -108,7 +109,7 @@ python "Model_3 (final model).py"
 
 ## Running Options
 
-### Option 1 : Run inference on the provided test set
+### Option 1: Run inference on the provided test set
 
 Load the pretrained weights and evaluate on the existing test split:
 
@@ -119,7 +120,7 @@ python "Model_3 (final model).py"
 The script will automatically skip training if weights are already saved and
 run evaluation on the test set, saving metrics to `outputs/`.
 
-### Option 2 : Run the pretrained model on a new region
+### Option 2: Run the pretrained model on a new region
 
 Use `Model_3_weights.pt` to run inference on new Sentinel-2 imagery without
 retraining.
@@ -131,7 +132,7 @@ retraining.
 2. In **QGIS**, clip and align the before and after images to the same extent
 
 3. Run `Prepocessing_patches.py` on your new imagery to extract 64×64 pixel
-   patch pairs (no mask required : use a blank raster for the mask)
+   patch pairs (no mask required, use a blank raster for the mask)
 
 4. Run inference using the pretrained weights:
 
@@ -177,7 +178,7 @@ np.save("predictions.npy", predictions)
   Bucha, Chernihiv, Hostomel, Irpin, Kharkiv, Kherson, Kramatorsk,
   Kremenchuk, Lysychansk, Makariv, Melitopol, Mykolaiv, Okhtyrka, Rubizhne,
   Shchastia, Sumy, Trostianets, Volnovakha, Vorzel)
-- **7,968 patch pairs** : 3,984 damaged, 3,984 non-damaged (balanced)
+- **7,968 patch pairs** (3,984 damaged, 3,984 non-damaged, balanced)
 - **Patch size**: 64×64 pixels (640×640 m at 10 m resolution)
 - **Bands**: B02 (Blue), B03 (Green), B04 (Red), B08 (NIR)
 - **Labels**: UNOSAT Copernicus Damage Assessment shapefiles
@@ -185,14 +186,13 @@ np.save("predictions.npy", predictions)
 
 ---
 
-## Results (Final Model : ResNet-101)
+## Results (Final Model, ResNet-101)
 
 | Class | Precision | Recall | F1 |
 |---|---|---|---|
 | No-Damage | 0.895 | 0.794 | 0.842 |
 | Damage | 0.815 | 0.907 | 0.859 |
 | **Overall Accuracy** | | | **0.851** |
-
 
 ---
 
