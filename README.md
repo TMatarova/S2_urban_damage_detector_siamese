@@ -12,7 +12,7 @@ using pre- and post-conflict Sentinel-2 satellite imagery, trained on
 | File / Folder | Description |
 |---|---|
 | `Model_3 (final model).py` | Final model : ResNet-101 backbone (recommended) |
-| `Model_0.py` – `Model_7.py` | All 8 model variants |
+| `Model_0.py` - `Model_7.py` | All 8 model variants |
 | `Prepocessing_patches.py` | Patch extraction from Sentinel-2 GeoTIFFs |
 | `EDA.ipynb` | Exploratory data analysis notebook |
 | `Results_Comparison.py` | Cross-model evaluation and ranking |
